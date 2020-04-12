@@ -16,31 +16,21 @@ Java.perform(function () {
     //日志开关
     //不要忘记调用原方法。一般放在最后，这样前面的hook才能更早生效。
     this.attachBaseContext(context);
-
-
     
+    tb.traceActivity()
 
-
-    // console.log("[*] enumerateLoadedClasses--------------");
-    // Java.enumerateLoadedClasses({
-    //   onMatch: function(_className){
-    //     if(_className.indexOf("Application")>0){
-
-    //       console.log("[*] found instance of '"+_className+"'");
-    //     }
-    //   },
-    //   onComplete: function(){
-    //     console.log("[*] class enuemration complete");
-    //   }
-    // });
 
     // tb.enumerateLoadedClasses("Application")
 
     // tb.ownMethods(Java.use("com.qsmy.BaseApplicationLike"))
     // tb.ownMethods(Java.use("com.qsmy.BaseApplication"))
+
+    
+    // tb.enumerateLoadedClasses("Sensor")
+    
+
   };
 
-  tb.traceActivity()
 
 
 
@@ -57,7 +47,9 @@ const tb = {
     if(word){
       Java.enumerateLoadedClasses({
         onMatch: function(_className){
-          console.log("[*] found instance of '"+_className+"'");
+          if(_className.indexOf(word)>=0){
+            console.log("[*] found instance of '"+_className+"'");
+          }
         },
         onComplete: function(){
           console.log("[*] class enuemration complete");
