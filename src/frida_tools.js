@@ -1,13 +1,38 @@
 //the toolbox
 const tb = {
+
+  // tb.enumerateLoadedClasses("Application")
+  enumerateLoadedClasses: function(word) {
+    console.log("[*] enumerateLoadedClasses--------------"+word);
+    if(word){
+      Java.enumerateLoadedClasses({
+        onMatch: function(_className){
+          console.log("[*] found instance of '"+_className+"'");
+        },
+        onComplete: function(){
+          console.log("[*] class enuemration complete");
+        }
+      });
+    }
+  },
+
+  // tb.ownMethods(Java.use("com.qsmy.BaseApplication"))
+  ownMethods: function(clazz) {
+    console.log("[*] ownMethods--------------"+clazz.class.getSimpleName());
+    var ownMethods = clazz.class.getDeclaredMethods();
+    ownMethods.forEach(function(s) {
+			console.log(s);
+    })
+  },
+
   // tb.showStacks()
-  showStacks: function () {
+  showStacks: function (word) {
     Java.perform(function () {
       var t = Java.use("android.util.Log").getStackTraceString(
         Java.use("java.lang.Exception").$new()
       );
-      if (arguments.length > 0) {
-        const idx = t.indexOf(arguments[0]);
+      if (word) {
+        const idx = t.indexOf(word);
         if (idx > 0) {
           t = t.substr(0, idx) + "......";
         }

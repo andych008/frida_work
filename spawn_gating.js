@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 
 let device = null;
 let tracers = [];
-const app_pkg = 'com.jiliguala.niuwa';//change to your pkg
+const app_pkg = 'com.qsmy.walkmonkey';//change to your pkg
 
 async function main() {
   device = await frida.getUsbDevice();
