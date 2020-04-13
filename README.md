@@ -63,8 +63,25 @@ Activity#onCreate---end
     >点击报名会**弹出广告**。广告视频结束后也不能按物理返回。只能点右上角xx。
 
 
-
-
+## retrofit相关
+搜一下，有Stetho，开关为xx，而且有HttpLoggingInterceptor，开关一样。整个app貌似只有一个开关。
+```
+var App = Java.use("com.qsmy.business.a");
+App.c.implementation = function() {
+  var c = this.c()
+  console.log("hook App get c ="+c)
+  return true
+};
+```
+## http 参数加密
+```
+var EncryptUtils = Java.use("com.qsmy.business.utils.EncryptUtils");
+EncryptUtils.nativeBase64Encrypt.implementation = function(str) {
+  console.log("hook nativeBase64Encrypt str ="+str)
+  return this.nativeBase64Encrypt(str);
+};
+```
+## 视频广告，不等待，强制返回
 
 
 
@@ -80,6 +97,34 @@ b.this.e.enableBackgroundLocation(11100, com.qsmy.common.c.b.a().b());
   - StepListenerManager//com.qsmy.busniess.walk.manager.b implements SensorEventListener
   - OutdoorsRunningStepManager//com.qsmy.busniess.mappath.f.e implements SensorEventListener
 - StepPresenter//
+- WalkManager // com.qsmy.busniess.walk.manager.f implements StepChangeListener */
+
+StepPresenter --> //StepChangeListener com.qsmy.busniess.walk.c.a.b
+              WalkManager implements StepChangeListener  --> //com.qsmy.busniess.walk.manager.f 
+                                                   //import com.qsmy.busniess.walk.manager.WalkManager;
+                                                   com.qsmy.common.service.StepcounterPushService
+                                                 
+
+                                                   com.qsmy.busniess.health.view.activity.HealthActivity
+                                                   com.qsmy.busniess.smartdevice.bracelet.view.activity.TodayHealthActivity
+                                                   com.qsmy.busniess.userrecord.steprecord.view.activity.StepsRecordActivity
+
+                                                   JsApi
+                                                   SHBridgeHelper
+                                                   com.qsmy.busniess.main.view.p582b.MainWalkPager
+                                                   com.qsmy.busniess.main.view.p582b.NativeTaskCenterPager
+                                                   com.qsmy.busniess.main.view.p582b.RunningOutdoorsPager
+                                                   com.qsmy.busniess.main.view.p582b.WalkPager
+                                                   com.qsmy.busniess.p545a.HomeHuoDongView
+
+/* renamed from: b */
+public StepChangeListener f28130b;
+
+if (StepPresenter.this.f28130b != null) {
+    StepPresenter.this.f28130b.mo35391a("stepNumber", StepPresenter.this.f28132d);
+    //com.qsmy.busniess.walk.manager.f#a
+    return;
+}
 
 
 
@@ -94,8 +139,6 @@ https://www.ishumei.com/product/bs-post-sdk.html
 com.ishumei.O000O00000oO.O00O0000OooO.O000O00000o0O.O000O00000o0O(O00O0000OooO)
  SensorEventListener
  public void onSensorChanged(SensorEvent sensorEvent)
-
-
 
 
 
